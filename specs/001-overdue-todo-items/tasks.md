@@ -25,7 +25,7 @@ description: "Task list for Support for Overdue Todo Items"
 
 **Purpose**: Establish the new `src/utils/` module directory for the `isOverdue` utility.
 
-- [ ] T001 Create `packages/frontend/src/utils/todoUtils.js` with an empty named export stub to establish the `src/utils/` directory
+- [x] T001 Create `packages/frontend/src/utils/todoUtils.js` with an empty named export stub to establish the `src/utils/` directory
 
 **Checkpoint**: `src/utils/` directory exists and is importable
 
@@ -37,8 +37,8 @@ description: "Task list for Support for Overdue Todo Items"
 
 **⚠️ CRITICAL**: Phases 3–5 cannot begin until T002 is complete.
 
-- [ ] T002 Implement `isOverdue(dueDate, completed)` pure function following the contract in `packages/frontend/src/utils/todoUtils.js`
-- [ ] T003 [P] Create unit tests covering all input/output cases from `contracts/isOverdue.md` (null, undefined, empty string, past date + incomplete, past date + complete, today, future date) in `packages/frontend/src/utils/__tests__/todoUtils.test.js`
+- [x] T002 Implement `isOverdue(dueDate, completed)` pure function following the contract in `packages/frontend/src/utils/todoUtils.js`
+- [x] T003 [P] Create unit tests covering all input/output cases from `contracts/isOverdue.md` (null, undefined, empty string, past date + incomplete, past date + complete, today, future date) in `packages/frontend/src/utils/__tests__/todoUtils.test.js`
 
 **Checkpoint**: `isOverdue` is implemented, all unit tests pass, and the function is importable by `TodoCard`
 
@@ -52,10 +52,10 @@ description: "Task list for Support for Overdue Todo Items"
 
 ### Implementation for User Story 1
 
-- [ ] T004 [P] [US1] Add `--overdue-bg` design token with light mode value `rgba(198, 40, 40, 0.06)` and dark mode value `rgba(239, 83, 80, 0.10)` in `packages/frontend/src/styles/theme.css`
-- [ ] T005 [P] [US1] Add `.todo-card.overdue` (border + background using `--danger-color` and `--overdue-bg`) and `.todo-overdue-badge` (text style using `--danger-color`) CSS rules in `packages/frontend/src/App.css`
-- [ ] T006 [US1] Import `isOverdue` from `../utils/todoUtils`, conditionally apply `overdue` CSS class to the card root element, and render `<span className="todo-overdue-badge">Overdue</span>` inside `.todo-content` (after title, before due date) in `packages/frontend/src/components/TodoCard.js`
-- [ ] T007 [P] [US1] Add US1 acceptance scenario tests (overdue badge shown for past+incomplete, not shown for completed, not shown for today, not shown for future, not shown for no due date, accessible text label present) to `packages/frontend/src/components/__tests__/TodoCard.test.js`
+- [x] T004 [P] [US1] Add `--overdue-bg` design token with light mode value `rgba(198, 40, 40, 0.06)` and dark mode value `rgba(239, 83, 80, 0.10)` in `packages/frontend/src/styles/theme.css`
+- [x] T005 [P] [US1] Add `.todo-card.overdue` (border + background using `--danger-color` and `--overdue-bg`) and `.todo-overdue-badge` (text style using `--danger-color`) CSS rules in `packages/frontend/src/App.css`
+- [x] T006 [US1] Import `isOverdue` from `../utils/todoUtils`, conditionally apply `overdue` CSS class to the card root element, and render `<span className="todo-overdue-badge">Overdue</span>` inside `.todo-content` (after title, before due date) in `packages/frontend/src/components/TodoCard.js`
+- [x] T007 [P] [US1] Add US1 acceptance scenario tests (overdue badge shown for past+incomplete, not shown for completed, not shown for today, not shown for future, not shown for no due date, accessible text label present) to `packages/frontend/src/components/__tests__/TodoCard.test.js`
 
 **Checkpoint**: User Story 1 is fully functional and independently testable. This alone constitutes a shippable MVP.
 
@@ -71,7 +71,7 @@ description: "Task list for Support for Overdue Todo Items"
 
 > No new implementation files required. The `isOverdue` call inside `TodoCard` re-evaluates on every render, so toggling `completed` automatically updates the badge. This phase validates that behavior.
 
-- [ ] T008 [US2] Add completion-toggle test scenarios (badge disappears on mark-complete, badge reappears on uncheck) to `packages/frontend/src/components/__tests__/TodoCard.test.js`
+- [x] T008 [US2] Add completion-toggle test scenarios (badge disappears on mark-complete, badge reappears on uncheck) to `packages/frontend/src/components/__tests__/TodoCard.test.js`
 
 **Checkpoint**: User Stories 1 AND 2 both pass independently
 
@@ -87,7 +87,7 @@ description: "Task list for Support for Overdue Todo Items"
 
 > No new implementation files required. Correctness is guaranteed by the `isOverdue` utility being called per `TodoCard`. This phase validates list-wide consistency.
 
-- [ ] T009 [US3] Add list-wide consistency test scenarios (mixed todo states produce correct badge presence/absence for each item) to `packages/frontend/src/components/__tests__/TodoCard.test.js`
+- [x] T009 [US3] Add list-wide consistency test scenarios (mixed todo states produce correct badge presence/absence for each item) to `packages/frontend/src/components/__tests__/TodoCard.test.js`
 
 **Checkpoint**: All three user stories pass independently
 
@@ -97,7 +97,7 @@ description: "Task list for Support for Overdue Todo Items"
 
 **Purpose**: Verify coverage requirement and confirm no regressions.
 
-- [ ] T010 Run full test suite from repo root (`npm test`) and confirm ≥80% code coverage threshold is met across all packages per Constitution Principle II
+- [x] T010 Run full test suite from repo root (`npm test`) and confirm ≥80% code coverage threshold is met across all packages per Constitution Principle II
 
 ---
 
