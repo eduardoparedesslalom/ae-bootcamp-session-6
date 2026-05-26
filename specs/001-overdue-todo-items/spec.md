@@ -24,6 +24,7 @@ A user opens their todo list and immediately notices that some items are visuall
 2. **Given** a todo exists with a due date today or in the future AND is incomplete, **When** the user views the todo list, **Then** that todo does NOT display an overdue indicator
 3. **Given** a todo exists with a due date in the past AND is marked complete, **When** the user views the todo list, **Then** that todo does NOT display an overdue indicator
 4. **Given** a todo exists with NO due date, **When** the user views the todo list, **Then** that todo does NOT display an overdue indicator
+5. **Given** a todo is overdue, **When** a screen reader traverses the todo list, **Then** the overdue state is announced via an accessible text label (e.g., "Overdue") without requiring the user to see the visual indicator
 
 ---
 
@@ -68,13 +69,15 @@ A user views their full todo list with a mix of overdue, current, and completed 
 
 ### Functional Requirements
 
-- **FR-001**: System MUST visually distinguish incomplete todo items whose due date is strictly before today's date from all other todos
+- **FR-001**: System MUST visually distinguish incomplete todo items whose due date is strictly before today's date from all other todos, using a combination of a color change (e.g., red or orange styling) and a visible text label (e.g., an "Overdue" badge or tag)
 - **FR-002**: System MUST determine overdue status at the time of display, based on comparing the todo's due date to the current date
 - **FR-003**: System MUST NOT display an overdue indicator on any todo that is marked as complete, regardless of its due date
 - **FR-004**: System MUST NOT display an overdue indicator on any todo that has no due date
 - **FR-005**: System MUST NOT display an overdue indicator on any todo whose due date is today or in the future
 - **FR-006**: System MUST update the overdue visual indicator immediately when a user changes the completion status of a todo (without requiring a page reload)
 - **FR-007**: The overdue indicator MUST be visible within the standard todo list view without requiring additional navigation or interaction
+- **FR-008**: System MUST NOT alter the existing list ordering when displaying overdue indicators; todos retain their creation-date order regardless of overdue status
+- **FR-009**: The overdue indicator MUST include a screen-reader-accessible text label (e.g., visually-hidden text or `aria-label` conveying "Overdue") so that the overdue state is perceivable without relying on visual styling alone
 
 ### Key Entities
 
@@ -96,6 +99,15 @@ A user views their full todo list with a mix of overdue, current, and completed 
 - Overdue status is a **display-time calculation** — it is not stored or persisted as a separate field on the todo item.
 - Completed todos are never shown as overdue, even if their due date has passed, since the task is already done.
 - Todos without a due date are never overdue.
-- The visual overdue indicator style (color, icon, or label) will be defined and implemented in alignment with the existing UI design system; the specification does not prescribe the exact visual treatment.
+- The overdue indicator uses a **combination of a color change and a text label** (e.g., red/orange styling on the card plus an "Overdue" badge). The exact shade and typography will be defined in alignment with the existing UI design system.
 - The feature applies to the existing single-user todo list view; no new views or routes are introduced.
 - The current date used for comparison is the client's local date at the time of rendering.
+- **List ordering is unchanged**: overdue items retain their existing position in the creation-date order. They are not sorted, grouped, or pinned to the top of the list.
+
+## Clarifications
+
+### Session 2026-05-26
+
+- Q: Should overdue items be repositioned within the list, or stay in place with only visual styling? → A: Keep existing creation-date order; apply visual styling only (no sorting, grouping, or pinning)
+- Q: Should the overdue indicator include an accessible text cue for screen readers? → A: Yes, include a screen-reader-accessible text label (e.g., visually-hidden "Overdue" or aria-label) alongside the visual indicator
+- Q: What type of visual indicator should signal the overdue state? → A: Combination of color change (red/orange) + visible text label ("Overdue" badge)
